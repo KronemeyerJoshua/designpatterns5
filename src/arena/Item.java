@@ -21,8 +21,6 @@ abstract class Item {
     protected int base;
     protected Random rand = new Random();
     private String name;
-    private int id;
-    private ItemClass type;
 
     /**
      * Item constructor.
@@ -35,8 +33,6 @@ abstract class Item {
      */
     Item(String name, int id, ItemClass type, int variation, int base) {
         this.name = name;
-        this.id = id;
-        this.type = type;
         this.variation = variation;
         this.base = base;
     }
