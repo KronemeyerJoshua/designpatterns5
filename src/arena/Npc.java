@@ -15,7 +15,6 @@ import java.util.Random;
 public class Npc {
     private int health;
     private int damage;
-    private int id;
     private int critChance = 30;
     private String name;
 
@@ -31,7 +30,6 @@ public class Npc {
         this.health = health;
         this.damage = damage;
         this.name = name;
-        this.id = id;
     }
 
     /**
