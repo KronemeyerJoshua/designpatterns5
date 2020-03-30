@@ -80,7 +80,7 @@ abstract class Item {
      * @return 0-variation
      */
     protected int getRandomVariation() {
-        return rand.nextInt((variation * 2) + 1) - variation;
+        return rand.nextInt(variation + 1);
     }
 
     public int getBase() {
