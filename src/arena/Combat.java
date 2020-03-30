@@ -90,6 +90,10 @@ public class Combat {
         int healAmount = 0;
         if (player.getPotionCount() > 0) {
             healAmount = ItemList.getItem(6).getBase();
+            if ( (healAmount + player.getHealth()) > 100)
+            {
+                healAmount -= (healAmount + player.getHealth()) % 100;
+            }
             player.restoreHealth(healAmount);
             player.removePotion();
         }
