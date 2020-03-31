@@ -8,12 +8,13 @@
  * Base Template, no design patterns used intentionally here
  */
 
-package arena;
+package main.arena;
 
 import java.util.Random;
 
 public class Npc {
     private int health;
+    private final int maxHealth;
     private int damage;
     private int critChance = 30;
     private String name;
@@ -28,6 +29,7 @@ public class Npc {
      */
     Npc(int health, int damage, String name, int id) {
         this.health = health;
+        this.maxHealth = health;
         this.damage = damage;
         this.name = name;
     }
@@ -77,5 +79,9 @@ public class Npc {
      */
     public int getCritChance() {
         return critChance;
+    }
+
+    public void resetHealth() {
+        health = maxHealth;
     }
 }
