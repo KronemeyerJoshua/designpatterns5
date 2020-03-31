@@ -8,9 +8,9 @@
  * Uses Abstract Factory design to setup and return approriate class of player
  */
 
-package arena;
+package main.arena;
 
-abstract class Player {
+public abstract class Player {
     private final int maxhealth;
     Item playerWeapon;
     Item playerArmor;
@@ -37,7 +37,7 @@ abstract class Player {
      * @param playerClass @see PlayerClass
      * @return The approriate class for the player
      */
-    static Player getPlayer(PlayerClass playerClass) {
+    public static Player getPlayer(PlayerClass playerClass) {
         switch (playerClass) {
             case MAGE:
                 return new Mage();
@@ -108,20 +108,20 @@ abstract class Player {
 
 class Mage extends Player {
     Mage() {
-        super(100, ItemList.getItem(5), ItemList.getItem(2));
+        super(85, ItemList.getItem(5), ItemList.getItem(2));
     }
 }
 
 class Warrior extends Player {
 
     Warrior() {
-        super(150, ItemList.getItem(3), ItemList.getItem(0));
+        super(100, ItemList.getItem(3), ItemList.getItem(0));
     }
 }
 
 class Rogue extends Player {
 
     Rogue() {
-        super(120, ItemList.getItem(1), ItemList.getItem(4));
+        super(90, ItemList.getItem(1), ItemList.getItem(4));
     }
 }
