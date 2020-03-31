@@ -8,7 +8,7 @@
  * Constants for what class of item we are using
  */
 
-package arena;
+package main.arena;
 
 public enum ItemClass {
     ARMOR, WEAPON, POTION
