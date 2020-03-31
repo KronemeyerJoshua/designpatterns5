@@ -8,7 +8,7 @@
  * Utilizes AbstractFactories mostly with some elements of Object Pools and Mediator
  */
 
-package arena;
+package main.arena;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -20,13 +20,15 @@ public class StartGame {
     /**
      * Our main loop for the game.
      *
-     * String format has to be used to use %n (universal newline char)
+     * <p>String format has to be used to use %n (universal newline char)
      * System.out.println/printf do not recognize %n
      *
      * @param args Console arguments
+
+     * @return null
      * @throws IOException Console reader exception
      */
-    public static void main(String[] args) throws IOException {
+    public static StartGame main(String[] args) throws IOException {
         // Our arena will hold the player, enemy, and is responsible for combat
         Combat arena = null;
         Player player = null;
@@ -34,7 +36,7 @@ public class StartGame {
         // Get our players input for their class
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in,
                                                 StandardCharsets.UTF_8));
-        System.out.println( String.format("Choose class:%n1: Mage%n2: Warrior%n3: Rogue"));
+        System.out.println(String.format("Choose class:%n1: Mage%n2: Warrior%n3: Rogue"));
 
         while (player == null) {
             switch (getInput(in)) {
@@ -60,7 +62,7 @@ public class StartGame {
 
         // Tell the arena it has a new player
         arena = new Combat(player);
-        System.out.print( String.format("\"Entering the arena is a powerful hero wielding %s and "
+        System.out.print(String.format("\"Entering the arena is a powerful hero wielding %s and "
                           + "wearing %s\"%n%n *The crowd cheering wildly*%n%n",
                            player.playerWeapon.getName(), player.playerArmor.getName()));
 
@@ -68,9 +70,9 @@ public class StartGame {
         for (int i = 0; i < BossList.getBossCount(); i++) {
             // Get our enemy name for immersion
             String enemyName = BossList.getNpc(i).getName();
-            System.out.printf( String.format("\"Their opponent is the fierce %s\"%n%n"
+            System.out.printf(String.format("\"Their opponent is the fierce %s\"%n%n"
                               + "*Crowd booing* %n%n %s looks visibly irritated%n%n",
-                                enemyName, enemyName) );
+                                enemyName, enemyName));
 
             // Tell our arena a new enemy has entered the fight
             arena.replaceEnemy(BossList.getNpc(i));
@@ -82,26 +84,26 @@ public class StartGame {
             while (!arena.enemyDead() && !arena.playerDead()) {
 
                 // Basic Stat Info
-                System.out.printf(String.format( "Player HP: %d%nPlayer Armor: %d%n"
+                System.out.printf(String.format("Player HP: %d%nPlayer Armor: %d%n"
                                     + "Player Base Attack: %d%nEnemy HP: %d%n",
                                     player.getHealth(), player.playerArmor.getBase(),
-                                    player.playerWeapon.getBase(), arena.getEnemyHealth() ));
-                System.out.printf(String.format( "Choose your action%n1. Attack%n"
+                                    player.playerWeapon.getBase(), arena.getEnemyHealth()));
+                System.out.printf(String.format("Choose your action%n1. Attack%n"
                                   + "2. %dHP Health Potion (%d)%n3."
                                   + " Quit%n", ItemList.getItem(6).getBase(),
-                                                        player.getPotionCount() ));
+                                                        player.getPotionCount()));
 
                 // Combat Menu
                 switch (getInput(in)) {
                     case "1":
                     case "attack":
                         // Player attacks monster, monster attacks player
-                        System.out.printf(String.format("Our hero strikes %s viciously for %d damage%n%n",
-                                enemyName, arena.damageEnemy()));
+                        System.out.printf(String.format("Our hero strikes %s viciously for %d"
+                                        + "damage%n%n", enemyName, arena.damageEnemy()));
                         if (!arena.enemyDead()) {
                             System.out.printf(String.format("%s retaliates with a hard hitting "
                                                 + "blow of %d damage%n%n",
-                                    enemyName, arena.damagePlayer() ));
+                                    enemyName, arena.damagePlayer()));
                         }
                         break;
 
@@ -111,14 +113,14 @@ public class StartGame {
                         // Player healths for potion amount if poitions are available
                         // Monster attacks player
                         if (player.getPotionCount() <= 0) {
-                            System.out.println(String.format("Our hero reaches for their potion belt,"
-                                    + "only to find they are out of potions!%n%n"));
-                            System.out.printf(String.format("%s sees this for an opportunity to attack"
-                                            + "and hits our hero for %d damage%n%n",
+                            System.out.println(String.format("Our hero reaches for their"
+                                    + "potion belt, only to find they are out of potions!%n%n"));
+                            System.out.printf(String.format("%s sees this for an opportunity to"
+                                            + "attack and hits our hero for %d damage%n%n",
                                                 enemyName, arena.damagePlayer()));
                         }
-                        System.out.printf(String.format("Our hero heals themselves for %d health%n%n",
-                                arena.potionPlayer()));
+                        System.out.printf(String.format("Our hero heals themselves for %d"
+                                        + "health%n%n", arena.potionPlayer()));
                         System.out.printf(String.format("Just after finishing the potion, %s hits"
                                             + "our hero for %d damage%n%n",
                                 enemyName, arena.damagePlayer()));
@@ -137,21 +139,21 @@ public class StartGame {
 
                 // This is to provide a message to the problem,
                 // termination of this loop is in the arguments of the while loop above
-                if (arena.enemyDead() && i < 1)
-                {
+                if (arena.enemyDead() && i < 1) {
                     System.out.printf(String.format("It's over folks! Our hero has bested %s"
                             + "and has won the Arena!%n%n", enemyName));
-                }
-                else if (arena.enemyDead()) {
+                } else if (arena.enemyDead()) {
                     System.out.printf(String.format("It's over folks! Our hero has bested %s"
                             + "and moves onto the next round!%n%n", enemyName));
                 } else if (arena.playerDead()) {
-                    System.out.printf(String.format("A stunning upset! %s has defeated our hero!%n", enemyName));
+                    System.out.printf(String.format("A stunning upset! %s has defeated our hero!%n",
+                                        enemyName));
                     System.out.println("Game over");
                 }
             }
         }
 
+        return null;
     }
 
     /**
