@@ -10,7 +10,7 @@
  * interact with each other
  */
 
-package arena;
+package main.arena;
 
 import java.util.Random;
 
@@ -23,7 +23,7 @@ public class Combat {
      *
      * @param player Our player
      */
-    Combat(Player player) {
+    public Combat(Player player) {
         this.player = player;
     }
 
@@ -90,8 +90,7 @@ public class Combat {
         int healAmount = 0;
         if (player.getPotionCount() > 0) {
             healAmount = ItemList.getItem(6).getBase();
-            if ( (healAmount + player.getHealth()) > 100)
-            {
+            if ((healAmount + player.getHealth()) > 100) {
                 healAmount -= (healAmount + player.getHealth()) % 100;
             }
             player.restoreHealth(healAmount);
