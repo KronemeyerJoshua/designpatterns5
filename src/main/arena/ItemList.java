@@ -11,7 +11,7 @@
  * An object pool of already generated items we can use
  */
 
-package arena;
+package main.arena;
 
 import java.util.HashMap;
 
