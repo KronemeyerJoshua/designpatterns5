@@ -8,7 +8,7 @@
  * Constant for player class
  */
 
-package arena;
+package main.arena;
 
 public enum PlayerClass {
     MAGE, WARRIOR, ROGUE
