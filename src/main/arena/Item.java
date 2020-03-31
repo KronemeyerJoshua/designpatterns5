@@ -11,11 +11,11 @@
  * While not used in this example, you could put Armor, Potion, Item specific methods
  */
 
-package arena;
+package main.arena;
 
 import java.util.Random;
 
-abstract class Item {
+public abstract class Item {
 
     protected int variation;
     protected int base;
@@ -47,7 +47,7 @@ abstract class Item {
      * @param type      Type of item (this is what determines the class) @see ItemClass
      * @return Returns armor, weapon, or potion based on type provided
      */
-    static Item getItem(String name, int id, int variation, int base, ItemClass type) {
+    public static Item getItem(String name, int id, int variation, int base, ItemClass type) {
         switch (type) {
             case ARMOR:
                 Armor a = new Armor(name, id, ItemClass.ARMOR, variation, base);
