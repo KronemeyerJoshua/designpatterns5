@@ -7,7 +7,7 @@
  * This is an object pool of bosses already created for us to use.
  */
 
-package arena;
+package main.arena;
 
 import java.util.HashMap;
 
@@ -26,7 +26,7 @@ public class BossList {
      * @param id The id of the enemy we want
      * @return The reference to the enemy
      */
-    static Npc getNpc(int id) {
+    public static Npc getNpc(int id) {
         return bosses.get(id);
     }
 
@@ -35,7 +35,7 @@ public class BossList {
      *
      * @return How many enemies we have in our list
      */
-    static int getBossCount() {
+    public static int getBossCount() {
         return bosses.size();
     }
 }
